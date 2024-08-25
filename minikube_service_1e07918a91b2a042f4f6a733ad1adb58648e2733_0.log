@@ -1,0 +1,111 @@
+Log file created at: 2024/08/25 20:01:07
+Running on machine: Dawids-MacBook-Air
+Binary: Built with gc go1.22.3 for darwin/arm64
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I0825 20:01:07.032459   62261 out.go:291] Setting OutFile to fd 1 ...
+I0825 20:01:07.033080   62261 out.go:343] isatty.IsTerminal(1) = true
+I0825 20:01:07.033083   62261 out.go:304] Setting ErrFile to fd 2...
+I0825 20:01:07.033085   62261 out.go:343] isatty.IsTerminal(2) = true
+I0825 20:01:07.033197   62261 root.go:338] Updating PATH: /Users/dawid/.minikube/bin
+W0825 20:01:07.033549   62261 root.go:314] Error reading config file at /Users/dawid/.minikube/config/config.json: open /Users/dawid/.minikube/config/config.json: no such file or directory
+I0825 20:01:07.034084   62261 mustload.go:65] Loading cluster: minikube
+I0825 20:01:07.034582   62261 config.go:182] Loaded profile config "minikube": Driver=docker, ContainerRuntime=docker, KubernetesVersion=v1.30.0
+I0825 20:01:07.034900   62261 cli_runner.go:164] Run: docker container inspect minikube --format={{.State.Status}}
+I0825 20:01:07.050123   62261 host.go:66] Checking if "minikube" exists ...
+I0825 20:01:07.050568   62261 cli_runner.go:164] Run: docker container inspect -f "'{{(index (index .NetworkSettings.Ports "8443/tcp") 0).HostPort}}'" minikube
+I0825 20:01:07.062161   62261 api_server.go:166] Checking apiserver status ...
+I0825 20:01:07.062933   62261 ssh_runner.go:195] Run: sudo pgrep -xnf kube-apiserver.*minikube.*
+I0825 20:01:07.062971   62261 cli_runner.go:164] Run: docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube
+I0825 20:01:07.073685   62261 sshutil.go:53] new ssh client: &{IP:127.0.0.1 Port:57144 SSHKeyPath:/Users/dawid/.minikube/machines/minikube/id_rsa Username:docker}
+I0825 20:01:07.174266   62261 ssh_runner.go:195] Run: sudo egrep ^[0-9]+:freezer: /proc/1673/cgroup
+W0825 20:01:07.181973   62261 api_server.go:177] unable to find freezer cgroup: sudo egrep ^[0-9]+:freezer: /proc/1673/cgroup: Process exited with status 1
+stdout:
+
+stderr:
+I0825 20:01:07.182229   62261 ssh_runner.go:195] Run: ls
+I0825 20:01:07.186332   62261 api_server.go:253] Checking apiserver healthz at https://127.0.0.1:57148/healthz ...
+I0825 20:01:07.195266   62261 api_server.go:279] https://127.0.0.1:57148/healthz returned 200:
+ok
+I0825 20:01:07.195334   62261 host.go:66] Checking if "minikube" exists ...
+I0825 20:01:07.195769   62261 cli_runner.go:164] Run: docker container inspect -f "{{range .NetworkSettings.Networks}}{{.IPAddress}},{{.GlobalIPv6Address}}{{end}}" minikube
+I0825 20:01:07.246516   62261 service.go:214] Found service: &Service{ObjectMeta:{webapp-service  default  0e6bd27c-67b0-422c-b354-ce7869b86208 3218 0 2024-08-25 18:25:37 +0200 CEST <nil> <nil> map[] map[kubectl.kubernetes.io/last-applied-configuration:{"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"name":"webapp-service","namespace":"default"},"spec":{"ports":[{"nodePort":30100,"port":3000,"protocol":"TCP","targetPort":3000}],"selector":{"app":"webapp"},"type":"NodePort"}}
+] [] [] [{kubectl-client-side-apply Update v1 2024-08-25 18:25:37 +0200 CEST FieldsV1 {"f:metadata":{"f:annotations":{".":{},"f:kubectl.kubernetes.io/last-applied-configuration":{}}},"f:spec":{"f:externalTrafficPolicy":{},"f:internalTrafficPolicy":{},"f:ports":{".":{},"k:{\"port\":3000,\"protocol\":\"TCP\"}":{".":{},"f:nodePort":{},"f:port":{},"f:protocol":{},"f:targetPort":{}}},"f:selector":{},"f:sessionAffinity":{},"f:type":{}}} }]},Spec:ServiceSpec{Ports:[]ServicePort{ServicePort{Name:,Protocol:TCP,Port:3000,TargetPort:{0 3000 },NodePort:30100,AppProtocol:nil,},},Selector:map[string]string{app: webapp,},ClusterIP:10.111.96.124,Type:NodePort,ExternalIPs:[],SessionAffinity:None,LoadBalancerIP:,LoadBalancerSourceRanges:[],ExternalName:,ExternalTrafficPolicy:Cluster,HealthCheckNodePort:0,PublishNotReadyAddresses:false,SessionAffinityConfig:nil,IPFamilyPolicy:*SingleStack,ClusterIPs:[10.111.96.124],IPFamilies:[IPv4],AllocateLoadBalancerNodePorts:nil,LoadBalancerClass:nil,InternalTrafficPolicy:*Cluster,TrafficDistribution:nil,},Status:ServiceStatus{LoadBalancer:LoadBalancerStatus{Ingress:[]LoadBalancerIngress{},},Conditions:[]Condition{},},}
+I0825 20:01:07.247660   62261 host.go:66] Checking if "minikube" exists ...
+I0825 20:01:07.248010   62261 cli_runner.go:164] Run: docker container inspect -f "{{range .NetworkSettings.Networks}}{{.IPAddress}},{{.GlobalIPv6Address}}{{end}}" minikube
+I0825 20:01:07.277110   62261 out.go:177] 
+W0825 20:01:07.281149   62261 out.go:239] ❌  Exiting due to SVC_UNREACHABLE: service not available: no running pod for service webapp-service found
+W0825 20:01:07.281158   62261 out.go:239] 
+W0825 20:01:07.283063   62261 out.go:239] [31m╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮[0m
+[31m│[0m                                                                                                                          [31m│[0m
+[31m│[0m    😿  If the above advice does not help, please let us know:                                                            [31m│[0m
+[31m│[0m    👉  https://github.com/kubernetes/minikube/issues/new/choose                                                          [31m│[0m
+[31m│[0m                                                                                                                          [31m│[0m
+[31m│[0m    Please run `minikube logs --file=logs.txt` and attach logs.txt to the GitHub issue.                                   [31m│[0m
+[31m│[0m    Please also attach the following file to the GitHub issue:                                                            [31m│[0m
+[31m│[0m    - /var/folders/y9/lskrbwh576vdsx3y8z3k685h0000gn/T/minikube_service_1e07918a91b2a042f4f6a733ad1adb58648e2733_0.log    [31m│[0m
+[31m│[0m                                                                                                                          [31m│[0m
+[31m╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯[0m
+I0825 20:01:07.287347   62261 out.go:177] 
+Log file created at: 2024/08/25 20:04:36
+Running on machine: Dawids-MacBook-Air
+Binary: Built with gc go1.22.3 for darwin/arm64
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I0825 20:04:36.620069   62739 out.go:291] Setting OutFile to fd 1 ...
+I0825 20:04:36.620476   62739 out.go:343] isatty.IsTerminal(1) = true
+I0825 20:04:36.620478   62739 out.go:304] Setting ErrFile to fd 2...
+I0825 20:04:36.620481   62739 out.go:343] isatty.IsTerminal(2) = true
+I0825 20:04:36.620569   62739 root.go:338] Updating PATH: /Users/dawid/.minikube/bin
+W0825 20:04:36.620618   62739 root.go:314] Error reading config file at /Users/dawid/.minikube/config/config.json: open /Users/dawid/.minikube/config/config.json: no such file or directory
+I0825 20:04:36.620748   62739 mustload.go:65] Loading cluster: minikube
+I0825 20:04:36.620991   62739 config.go:182] Loaded profile config "minikube": Driver=docker, ContainerRuntime=docker, KubernetesVersion=v1.30.0
+I0825 20:04:36.621418   62739 cli_runner.go:164] Run: docker container inspect minikube --format={{.State.Status}}
+I0825 20:04:36.641847   62739 out.go:177] 🤷  The control-plane node minikube host is not running: state=Stopped
+I0825 20:04:36.648793   62739 out.go:177] 👉  To start a cluster, run: "minikube start"
+Log file created at: 2024/08/25 20:06:02
+Running on machine: Dawids-MacBook-Air
+Binary: Built with gc go1.22.3 for darwin/arm64
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I0825 20:06:02.323650   62963 out.go:291] Setting OutFile to fd 1 ...
+I0825 20:06:02.325665   62963 out.go:343] isatty.IsTerminal(1) = true
+I0825 20:06:02.325668   62963 out.go:304] Setting ErrFile to fd 2...
+I0825 20:06:02.325670   62963 out.go:343] isatty.IsTerminal(2) = true
+I0825 20:06:02.325973   62963 root.go:338] Updating PATH: /Users/dawid/.minikube/bin
+W0825 20:06:02.326664   62963 root.go:314] Error reading config file at /Users/dawid/.minikube/config/config.json: open /Users/dawid/.minikube/config/config.json: no such file or directory
+I0825 20:06:02.328241   62963 mustload.go:65] Loading cluster: minikube
+I0825 20:06:02.328816   62963 config.go:182] Loaded profile config "minikube": Driver=docker, ContainerRuntime=docker, KubernetesVersion=v1.30.0
+I0825 20:06:02.329211   62963 cli_runner.go:164] Run: docker container inspect minikube --format={{.State.Status}}
+I0825 20:06:02.342259   62963 host.go:66] Checking if "minikube" exists ...
+I0825 20:06:02.342630   62963 cli_runner.go:164] Run: docker container inspect -f "'{{(index (index .NetworkSettings.Ports "8443/tcp") 0).HostPort}}'" minikube
+I0825 20:06:02.356397   62963 api_server.go:166] Checking apiserver status ...
+I0825 20:06:02.357114   62963 ssh_runner.go:195] Run: sudo pgrep -xnf kube-apiserver.*minikube.*
+I0825 20:06:02.357164   62963 cli_runner.go:164] Run: docker container inspect -f "'{{(index (index .NetworkSettings.Ports "22/tcp") 0).HostPort}}'" minikube
+I0825 20:06:02.369294   62963 sshutil.go:53] new ssh client: &{IP:127.0.0.1 Port:58221 SSHKeyPath:/Users/dawid/.minikube/machines/minikube/id_rsa Username:docker}
+I0825 20:06:02.472557   62963 ssh_runner.go:195] Run: sudo egrep ^[0-9]+:freezer: /proc/1907/cgroup
+W0825 20:06:02.479121   62963 api_server.go:177] unable to find freezer cgroup: sudo egrep ^[0-9]+:freezer: /proc/1907/cgroup: Process exited with status 1
+stdout:
+
+stderr:
+I0825 20:06:02.479178   62963 ssh_runner.go:195] Run: ls
+I0825 20:06:02.481842   62963 api_server.go:253] Checking apiserver healthz at https://127.0.0.1:58225/healthz ...
+I0825 20:06:02.490357   62963 api_server.go:279] https://127.0.0.1:58225/healthz returned 200:
+ok
+I0825 20:06:02.490526   62963 host.go:66] Checking if "minikube" exists ...
+I0825 20:06:02.490862   62963 cli_runner.go:164] Run: docker container inspect -f "{{range .NetworkSettings.Networks}}{{.IPAddress}},{{.GlobalIPv6Address}}{{end}}" minikube
+I0825 20:06:02.530173   62963 service.go:214] Found service: &Service{ObjectMeta:{webapp-service  default  0e6bd27c-67b0-422c-b354-ce7869b86208 3218 0 2024-08-25 18:25:37 +0200 CEST <nil> <nil> map[] map[kubectl.kubernetes.io/last-applied-configuration:{"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"name":"webapp-service","namespace":"default"},"spec":{"ports":[{"nodePort":30100,"port":3000,"protocol":"TCP","targetPort":3000}],"selector":{"app":"webapp"},"type":"NodePort"}}
+] [] [] [{kubectl-client-side-apply Update v1 2024-08-25 18:25:37 +0200 CEST FieldsV1 {"f:metadata":{"f:annotations":{".":{},"f:kubectl.kubernetes.io/last-applied-configuration":{}}},"f:spec":{"f:externalTrafficPolicy":{},"f:internalTrafficPolicy":{},"f:ports":{".":{},"k:{\"port\":3000,\"protocol\":\"TCP\"}":{".":{},"f:nodePort":{},"f:port":{},"f:protocol":{},"f:targetPort":{}}},"f:selector":{},"f:sessionAffinity":{},"f:type":{}}} }]},Spec:ServiceSpec{Ports:[]ServicePort{ServicePort{Name:,Protocol:TCP,Port:3000,TargetPort:{0 3000 },NodePort:30100,AppProtocol:nil,},},Selector:map[string]string{app: webapp,},ClusterIP:10.111.96.124,Type:NodePort,ExternalIPs:[],SessionAffinity:None,LoadBalancerIP:,LoadBalancerSourceRanges:[],ExternalName:,ExternalTrafficPolicy:Cluster,HealthCheckNodePort:0,PublishNotReadyAddresses:false,SessionAffinityConfig:nil,IPFamilyPolicy:*SingleStack,ClusterIPs:[10.111.96.124],IPFamilies:[IPv4],AllocateLoadBalancerNodePorts:nil,LoadBalancerClass:nil,InternalTrafficPolicy:*Cluster,TrafficDistribution:nil,},Status:ServiceStatus{LoadBalancer:LoadBalancerStatus{Ingress:[]LoadBalancerIngress{},},Conditions:[]Condition{},},}
+I0825 20:06:02.530995   62963 host.go:66] Checking if "minikube" exists ...
+I0825 20:06:02.531127   62963 cli_runner.go:164] Run: docker container inspect -f "{{range .NetworkSettings.Networks}}{{.IPAddress}},{{.GlobalIPv6Address}}{{end}}" minikube
+I0825 20:06:02.559876   62963 out.go:177] 
+W0825 20:06:02.563899   62963 out.go:239] ❌  Exiting due to SVC_UNREACHABLE: service not available: no running pod for service webapp-service found
+W0825 20:06:02.563917   62963 out.go:239] 
+W0825 20:06:02.565588   62963 out.go:239] [31m╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮[0m
+[31m│[0m                                                                                                                          [31m│[0m
+[31m│[0m    😿  If the above advice does not help, please let us know:                                                            [31m│[0m
+[31m│[0m    👉  https://github.com/kubernetes/minikube/issues/new/choose                                                          [31m│[0m
+[31m│[0m                                                                                                                          [31m│[0m
+[31m│[0m    Please run `minikube logs --file=logs.txt` and attach logs.txt to the GitHub issue.                                   [31m│[0m
+[31m│[0m    Please also attach the following file to the GitHub issue:                                                            [31m│[0m
+[31m│[0m    - /var/folders/y9/lskrbwh576vdsx3y8z3k685h0000gn/T/minikube_service_1e07918a91b2a042f4f6a733ad1adb58648e2733_0.log    [31m│[0m
+[31m│[0m                                                                                                                          [31m│[0m
+[31m╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯[0m
+I0825 20:06:02.569780   62963 out.go:177] 
